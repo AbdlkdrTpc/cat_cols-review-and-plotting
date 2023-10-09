@@ -74,9 +74,10 @@ def cat_and_num_summary(dataframe):
         # Numerik değişkenleri de, df.columns içerisinde ki değişkenlerde gezip cat_cols içerisinde olmayanları seçerek oluşturalım.
         num_cols = [i for i in df.columns if i not in cat_cols]
     return cat_cols, num_cols
-cat_cols, num_cols = cat_and_num_summary(df)
 
-import matplotlib.pyplot as plt
+    cat_cols, num_cols = cat_and_num_summary(df)
+    
+    import matplotlib.pyplot as plt
 
 
 def cat_summary(dataframe, col, plot=False):
