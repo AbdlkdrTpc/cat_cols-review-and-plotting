@@ -34,7 +34,7 @@ Büyük veri yapılarında, Kategorik değişkenleri bulma, inceleme ve grafik �
     num_cols = [i for i in df.columns if i not in cat_cols]
 
 
-def cat_and_num_summary(dataframe):
+    def cat_and_num_summary(dataframe):
     """
     Belirli kriterlere dayalı olarak bir DataFrame içindeki sütunları kategorik ve sayısal tiplere ayırır.
 
@@ -75,6 +75,7 @@ def cat_and_num_summary(dataframe):
         num_cols = [i for i in df.columns if i not in cat_cols]
     return cat_cols, num_cols
 
+
     cat_cols, num_cols = cat_and_num_summary(df)
     
     import matplotlib.pyplot as plt
@@ -113,5 +114,5 @@ def cat_summary(dataframe, col, plot=False):
         plt.show(block=True)
 
 
-for i in cat_cols:
-    cat_summary(df, i, plot=True)
+    for i in cat_cols:
+        cat_summary(df, i, plot=True)
