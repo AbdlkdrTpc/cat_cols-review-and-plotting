@@ -1,37 +1,37 @@
 # cat_cols-review-and-plotting
 Büyük veri yapılarında, Kategorik değişkenleri bulma, inceleme ve grafik çizdirme işlemi
 
-
-import numpy as np
-import pandas as pd
-import seaborn as sns
-pd.set_option('display.width', 500)
-pd.set_option('display.max_columns', None)
-
-df = sns.load_dataset("titanic")
-
-df.columns
-df.info()
+# import
+    import numpy as np
+    import pandas as pd
+    import seaborn as sns
+    pd.set_option('display.width', 500)
+    pd.set_option('display.max_columns', None)
+    
+    df = sns.load_dataset("titanic")
+    
+    df.columns
+    df.info()
 
 # 1) tipi kategorik olan değişkenleri yakalayarak cat_cols adındaki değişkene list comp. yöntemi ile atayalım.
-cat_cols = [i for i in df.columns if str(df[i].dtypes) in ["category", "object", "bool"]]
+    cat_cols = [i for i in df.columns if str(df[i].dtypes) in ["category", "object", "bool"]]
 
 # 2) tipi sayısal olan ve bağımsız değişken sayısı 10 dan küçük olan değişkenlerin kategorik değişken olabileceği varsayımı ile bu değişkenleri yakalayarak num_bat_cat adındaki değişkene list comp. yöntemi ile atayalım.
-num_but_cat = [i for i in df.columns if df[i].dtypes in ["int", "float"] and df[i].nunique() < 10]
+    num_but_cat = [i for i in df.columns if df[i].dtypes in ["int", "float"] and df[i].nunique() < 10]
 
 # 1) ve 2) den ortaya çıkan listeleri toplayıp cat_cols listesine tekrardan atayalım.
-cat_cols = cat_cols + num_but_cat
+    cat_cols = cat_cols + num_but_cat
 
 # 3) Kategorik değişkenler arasında kardinalitesi yüksek olan çok bir anlam ifade etmeyecek kategorik değişkenleri de bulalım.
-car_but_cat = [i for i in df.columns if str(df[i].dtypes) in ["category", "object"] and df[i].nunique() > 20]
+    car_but_cat = [i for i in df.columns if str(df[i].dtypes) in ["category", "object"] and df[i].nunique() > 20]
 
 # 3) de bulduğumuz kardinalitesi yüksek kategorik değişkenler, cat_cols listesinde var ise onları çıkaralım.
-cat_cols = [i for i in cat_cols if i not in car_but_cat]
+    cat_cols = [i for i in cat_cols if i not in car_but_cat]
 
+    df[cat_cols].nunique()
 
-df[cat_cols].nunique()
 # Numerik değişkenleri de, df.columns içerisinde ki değişkenlerde gezip cat_cols içerisinde olmayanları seçerek oluşturalım.
-num_cols = [i for i in df.columns if i not in cat_cols]
+    num_cols = [i for i in df.columns if i not in cat_cols]
 
 
 def cat_and_num_summary(dataframe):
