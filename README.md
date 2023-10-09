@@ -81,7 +81,7 @@ Büyük veri yapılarında, Kategorik değişkenleri bulma, inceleme ve grafik �
     import matplotlib.pyplot as plt
 
 
-def cat_summary(dataframe, col, plot=False):
+    def cat_summary(dataframe, col, plot=False):
     """
     Belirtilen sütunun kategorik veri özetini yazdırır ve isteğe bağlı olarak bir grafik çizer.
 
